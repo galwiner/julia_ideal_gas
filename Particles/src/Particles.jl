@@ -61,7 +61,8 @@ end
 
 function update_pos(p::Particle,arena:: Arena)
     p.pos += p.vel
-    p.pos = p.pos .* (1 .- convert(Vector{Int64},(p.pos .> arena.size)))
+    
+    # p.pos = p.pos .* (1 .- convert(Vector{Int64},(p.pos .> arena.size)))
  
 
     # p.pos = p.pos .* (1 .- convert(Vector{Int64},(p.pos .< arena.size)))
@@ -76,7 +77,6 @@ function update_arena(a::Arena)
         update_vel(p)
         update_pos(p,a)
     end
-    a
 end
 function get_coords(arena::Arena)
     
