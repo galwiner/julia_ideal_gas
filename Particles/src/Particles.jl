@@ -43,7 +43,7 @@ end
 
 function randomize_pos(arena :: Arena)
     for p in arena.particles
-            p.pos = [rand(0:arena.size[d]) for d in 1:length(arena.size) ]
+            p.pos = [rand(-arena.size[d]/2:arena.size[d]/2) for d in 1:length(arena.size) ]
     end
 end
 
@@ -62,14 +62,27 @@ end
 function update_pos(p::Particle,arena:: Arena)
     p.pos += p.vel
     
-    # p.pos = p.pos .* (1 .- convert(Vector{Int64},(p.pos .> arena.size)))
+    
+    p.pos = p.pos .* (1 .- (p.pos .> arena.size))
  
 
-    # p.pos = p.pos .* (1 .- convert(Vector{Int64},(p.pos .< arena.size)))
+    # p.pos = p.pos .* (1 .- (p.pos .<= 0) + arena.size .* (p.pos .<= 0))
 end
 
 function update_vel(p::Particle)
     p.vel += p.accel
+end
+
+function set_force(a::Arena,f::Vector{<:Number})
+    for p in a.particles
+        p.accel=f
+    end
+end
+
+function apply_force(a::Arena,f::Vector{<:Number})
+    for p in a.particles
+        p.accel+=f
+    end
 end
 
 function update_arena(a::Arena)
