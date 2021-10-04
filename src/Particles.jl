@@ -49,11 +49,14 @@ function randomize_all(arena::Arena,max_vel::Number)
 end
 
 
+"""
+Update the position of a particle based on its velocity
+"""
 function update_pos(p::Particle,arena:: Arena)
     p.pos += p.vel
     
     
-    p.pos = p.pos .* (1 .- (p.pos .> arena.size))
+    # p.pos = p.pos .* (1 .- (p.pos .> arena.size))
  
 
     # p.pos = p.pos .* (1 .- (p.pos .<= 0) + arena.size .* (p.pos .<= 0))
