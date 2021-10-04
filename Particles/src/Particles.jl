@@ -1,7 +1,5 @@
 module Particles
 
-# using Plots
-using Distributions
 export Particle, Arena
 
 mutable struct Particle
@@ -32,14 +30,6 @@ struct Arena
         arena
     end
 end
-
-
-# function Arena(size::Array{<:Int,1} , n_particles::Int=1)
-#     arena = Arena(size,Particle[])
-
-#     [push!(arena.particles,Particle(length(size))) for _ in 0:n_particles-1]        
-#     arena
-# end
 
 function randomize_pos(arena :: Arena)
     for p in arena.particles
