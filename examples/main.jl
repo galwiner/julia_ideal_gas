@@ -1,7 +1,6 @@
 using Revise
 using Particles
-# using GLMakie
-using WGLMakie
+using GLMakie
 
 a = Arena([500,500],100)
 m=Particles
@@ -17,12 +16,9 @@ xlims!(scene,-500,500)
 ylims!(scene,-500,500)
 m.set_force(a,Vector([0,0]))
 m.apply_force(a,Vector([-0.0,0.01]))
+
 for _ in 1:200
     m.update_arena(a)
-    # m.randomize_vel(a,10)
-
-    n[]=Point2f0.((p->p.pos).(a.particles))
- 
-    
+    n[]=Point2f0.((p->p.pos).(a.particles))    
     sleep(0.01)
 end

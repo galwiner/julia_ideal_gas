@@ -1,6 +1,6 @@
 module Particles
-
-export Particle, Arena
+using Distributions
+export Particle, Arena,randomize_pos
 
 mutable struct Particle
     pos :: Vector{<:Number} 
